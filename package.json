@@ -9,7 +9,7 @@
     "build": "tsup"
   },
   "bin": {
-    "island": "bin/island.cjs"
+    "island": "bin/island.js"
   },
   "keywords": [],
   "author": "",

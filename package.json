@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc -w"
+    "start": "tsup --watch",
+    "build": "tsup"
   },
   "bin": {
     "island": "bin/island.cjs"
@@ -16,7 +17,9 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.10.3",
+    "ora": "^7.0.1",
     "rollup": "^4.6.1",
+    "tsup": "^8.0.1",
     "typescript": "^5.3.2"
   },
   "dependencies": {

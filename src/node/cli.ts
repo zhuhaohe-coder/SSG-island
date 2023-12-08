@@ -1,5 +1,4 @@
 import { cac } from 'cac';
-import { createDevServer } from './dev.js';
 import { build } from './build';
 import { resolve } from 'path';
 
@@ -11,9 +10,16 @@ cli
   .command('[root]', 'start dev server')
   .alias('dev')
   .action(async (root: string) => {
-    const server = await createDevServer(root);
-    await server.listen();
-    server.printUrls();
+    const createServer = async () => {
+      const { createDevServer } = await import('./dev.js');
+      const server = await createDevServer(root, async () => {
+        await server.close();
+        await createServer();
+      });
+      await server.listen();
+      server.printUrls();
+    };
+    await createServer();
   });
 
 cli

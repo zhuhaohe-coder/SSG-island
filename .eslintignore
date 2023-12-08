@@ -6,3 +6,5 @@ dist
 bin
 esm-cjs
 docs
+test-results
+tests-examples

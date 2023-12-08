@@ -21,7 +21,8 @@ module.exports = {
     semi: ['error', 'always'], //结尾逗号
     '@typescript-eslint/no-non-null-assertion': 'off',
     'react/react-in-jsx-scope': 'off',
-    '@typescript-eslint/no-explicit-any': 'warn'
+    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/no-unused-vars': 'warn'
   },
   settings: {
     react: {

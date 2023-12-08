@@ -31,7 +31,8 @@ export async function bundle(root: string) {
       rollupOptions: {
         input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH,
         output: {
-          format: isServer ? 'cjs' : 'esm'
+          // format: isServer ? 'cjs' : 'esm'
+          format: 'esm'
         }
       }
     }
@@ -43,8 +44,8 @@ export async function bundle(root: string) {
   try {
     //并发优化
     const [clientBundle, serverBundle] = await Promise.all([
-      viteBuild(resolveViteConfig(false)),
-      viteBuild(resolveViteConfig(true))
+      viteBuild(resolveViteConfig(true)),
+      viteBuild(resolveViteConfig(false))
     ]);
 
     spinner.stop();

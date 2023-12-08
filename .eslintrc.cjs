@@ -20,7 +20,8 @@ module.exports = {
     quotes: ['error', 'single'], //单括号
     semi: ['error', 'always'], //结尾逗号
     '@typescript-eslint/no-non-null-assertion': 'off',
-    'react/react-in-jsx-scope': 'off'
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn'
   },
   settings: {
     react: {

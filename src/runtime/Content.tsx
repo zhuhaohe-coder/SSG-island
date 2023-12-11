@@ -1,24 +1,25 @@
 import { useRoutes } from 'react-router-dom';
-import A from '../../docs/guide/a';
-import B from '../../docs/b';
-import Index from '../../docs/guide';
 
-const routes = [
-  {
-    path: '/guide',
-    element: <Index />
-  },
-  {
-    path: '/guide/a',
-    element: <A />
-  },
-  {
-    path: '/b',
-    element: <B />
-  }
-];
+import { routes } from 'island:routes';
+
+// const routes = [
+//   {
+//     path: '/guide',
+//     element: <Index />
+//   },
+//   {
+//     path: '/guide/a',
+//     element: <A />
+//   },
+//   {
+//     path: '/b',
+//     element: <B />
+//   }
+// ];
 
 function Content() {
+  console.log(routes);
+
   const routeElement = useRoutes(routes);
   return routeElement;
 }

@@ -9,7 +9,7 @@
     "start": "tsup --watch",
     "build": "tsup",
     "lint": "eslint --fix --ext .ts,.tsx,.js,.jsx --quiet ./",
-    "test:init": "vitest --ui"
+    "test:unit": "vitest"
   },
   "bin": {
     "island": "bin/island.js"
@@ -42,12 +42,14 @@
     "vitest": "^1.0.2"
   },
   "dependencies": {
+    "@loadable/component": "^5.15.3",
     "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
     "cac": "^6.7.14",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

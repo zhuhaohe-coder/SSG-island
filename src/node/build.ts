@@ -7,10 +7,12 @@ import type { RollupOutput } from 'rollup';
 import fs from 'fs-extra';
 import { pathToFileURL } from 'url';
 import ora from 'ora';
+import { SiteConfig } from 'shared/types';
+import { pluginConfig } from './plugin-island/config';
 
-export async function build(root: string = process.cwd()) {
+export async function build(root: string = process.cwd(), config: SiteConfig) {
   // 打包代码，包括 client 端 + server 端
-  const [clientBundle] = await bundle(root);
+  const [clientBundle] = await bundle(root, config);
   // 引入 server-entry 模块
   const serverEntryPath = join(root, '.temp', 'ssr-entry.js');
   const { render } = await import(pathToFileURL(serverEntryPath).toString());
@@ -18,13 +20,13 @@ export async function build(root: string = process.cwd()) {
   await renderPage(render, root, clientBundle);
 }
 
-export async function bundle(root: string) {
+export async function bundle(root: string, config: SiteConfig) {
   //公用配置抽离
   const resolveViteConfig = (isServer: boolean): InlineConfig => ({
     mode: 'production',
     root,
     //自动注入 import React from 'react'，避免 React is not defined 的错误
-    plugins: [pluginReact()],
+    plugins: [pluginReact(), pluginConfig(config)],
     build: {
       ssr: isServer,
       outDir: isServer ? '.temp' : 'build',

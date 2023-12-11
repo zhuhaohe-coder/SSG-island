@@ -1,12 +1,13 @@
-import { relative } from 'path';
+import { join, relative } from 'path';
 import { Plugin } from 'vite';
 import { SiteConfig } from 'shared/types/index';
+import { PACKAGE_ROOT } from 'node/constants';
 
 const SITE_DATA_ID = 'island:site-data';
 
 export function pluginConfig(
   config: SiteConfig,
-  restartServer: () => Promise<void>
+  restartServer?: () => Promise<void>
 ): Plugin {
   // let server: ViteDevServer | null = null;
   return {
@@ -20,6 +21,15 @@ export function pluginConfig(
       if (id === '\0' + SITE_DATA_ID) {
         return `export default ${JSON.stringify(config.siteData)}`;
       }
+    },
+    config() {
+      return {
+        resolve: {
+          alias: {
+            '@runtime': join(PACKAGE_ROOT, 'src', 'runtime', 'index.ts')
+          }
+        }
+      };
     },
     // configureServer(s) {
     //   server = s;

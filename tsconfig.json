@@ -6,6 +6,14 @@
     "rootDir": "." /* Specify the root folder within your source files. */,
     "jsx": "react-jsx",
     "esModuleInterop": true,
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "paths": {
+      "@runtime": [
+        "runtime/index.ts"
+      ],
+      "shared/*": [
+        "shared/*"
+      ]
+    }
   }
 }

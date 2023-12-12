@@ -1,10 +1,7 @@
 import { createServer } from 'vite';
-import { pluginIndexHtml } from './plugin-island/indexHtml';
-import pluginReact from '@vitejs/plugin-react';
 import { PACKAGE_ROOT } from './constants';
 import { resolveConfig } from './config';
-import { pluginConfig } from './plugin-island/config';
-import { pluginRoutes } from './plugin-routes';
+import { createVitePlugins } from './vitePlugins';
 
 export async function createDevServer(
   root: string,
@@ -16,14 +13,7 @@ export async function createDevServer(
   return createServer({
     //因为 Vite 本身也是一个静态资源服务器，如果把 root 设为 docs 目录，那么当你访问约定式路由的时候，Vite 会直接给你返回 tsx 文件的编译结果，这是不符合我们预期的
     root: PACKAGE_ROOT,
-    plugins: [
-      pluginIndexHtml(),
-      pluginReact(),
-      pluginConfig(config, restartServer),
-      pluginRoutes({
-        root: config.root
-      })
-    ],
+    plugins: createVitePlugins(config, restartServer),
     server: {
       fs: {
         allow: [PACKAGE_ROOT]

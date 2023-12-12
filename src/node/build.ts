@@ -1,6 +1,5 @@
 import { build as viteBuild } from 'vite';
 import { InlineConfig } from 'vite';
-import pluginReact from '@vitejs/plugin-react';
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants';
 import { join } from 'path';
 import type { RollupOutput } from 'rollup';
@@ -8,7 +7,7 @@ import fs from 'fs-extra';
 import { pathToFileURL } from 'url';
 import ora from 'ora';
 import { SiteConfig } from 'shared/types';
-import { pluginConfig } from './plugin-island/config';
+import { createVitePlugins } from './vitePlugins';
 
 export async function build(root: string = process.cwd(), config: SiteConfig) {
   // 打包代码，包括 client 端 + server 端
@@ -26,7 +25,7 @@ export async function bundle(root: string, config: SiteConfig) {
     mode: 'production',
     root,
     //自动注入 import React from 'react'，避免 React is not defined 的错误
-    plugins: [pluginReact(), pluginConfig(config)],
+    plugins: createVitePlugins(config),
     build: {
       ssr: isServer,
       outDir: isServer ? '.temp' : 'build',

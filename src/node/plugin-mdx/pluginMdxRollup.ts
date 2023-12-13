@@ -5,8 +5,10 @@ import rehypePluginAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePluginSlug from 'rehype-slug';
 import remarkPluginMDXFrontMatter from 'remark-mdx-frontmatter';
 import remarkPluginFrontmatter from 'remark-frontmatter';
+import { rehypePluginShiki } from './rehypePlugins/shiki';
+import shiki from 'shiki';
 
-export function pluginMdxRollup(): Plugin {
+export async function pluginMdxRollup(): Promise<Plugin> {
   return pluginMdx({
     remarkPlugins: [
       remarkPluginGFM,
@@ -26,6 +28,10 @@ export function pluginMdxRollup(): Plugin {
             value: '#'
           }
         }
+      ],
+      [
+        rehypePluginShiki,
+        { highlighter: await shiki.getHighlighter({ theme: 'nord' }) }
       ]
     ]
   }) as unknown as Plugin;

@@ -1,21 +1,21 @@
 import type { Plugin } from 'unified';
 import { visit } from 'unist-util-visit';
-import type { Element as HastElement, Root } from 'hast';
-interface Element extends HastElement {
-  data?: {
-    isVisited?: boolean;
-  };
+import type { Element, ElementData, Root } from 'hast';
+
+interface ExtendedElementData extends ElementData {
+  isVisited?: boolean;
 }
 
 export const rehypePluginPreWrapper: Plugin<[], Root> = () => {
   return (tree) => {
-    visit(tree, 'element', (node: Element) => {
+    visit(tree, 'element', (node) => {
+      const extendedData = node.data as ExtendedElementData | undefined;
       // 1. 找到 pre 元素
       if (
         node.tagName === 'pre' &&
         node.children[0]?.type === 'element' &&
         node.children[0].tagName === 'code' &&
-        !node.data?.isVisited
+        !extendedData?.isVisited
       ) {
         // 2. 解析出代码的语言名称
         const codeNode = node.children[0];
@@ -29,7 +29,7 @@ export const rehypePluginPreWrapper: Plugin<[], Root> = () => {
           children: node.children,
           data: {
             isVisited: true
-          },
+          } as ExtendedElementData,
           properties: {}
         };
         // 修改原来的 pre 标签 -> div 标签

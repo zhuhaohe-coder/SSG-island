@@ -21,11 +21,13 @@ export async function build(root: string = process.cwd(), config: SiteConfig) {
 
 export async function bundle(root: string, config: SiteConfig) {
   //公用配置抽离
-  const resolveViteConfig = (isServer: boolean): InlineConfig => ({
+  const resolveViteConfig = async (
+    isServer: boolean
+  ): Promise<InlineConfig> => ({
     mode: 'production',
     root,
     //自动注入 import React from 'react'，避免 React is not defined 的错误
-    plugins: createVitePlugins(config),
+    plugins: await createVitePlugins(config),
     build: {
       ssr: isServer,
       outDir: isServer ? '.temp' : 'build',
@@ -45,8 +47,8 @@ export async function bundle(root: string, config: SiteConfig) {
   try {
     //并发优化
     const [clientBundle, serverBundle] = await Promise.all([
-      viteBuild(resolveViteConfig(true)),
-      viteBuild(resolveViteConfig(false))
+      viteBuild(await resolveViteConfig(true)),
+      viteBuild(await resolveViteConfig(false))
     ]);
 
     spinner.stop();

@@ -48,15 +48,17 @@ export class RouteService {
     return routePath.startsWith('/') ? routePath : `/${routePath}`;
   }
 
-  generateRoutesCode() {
+  generateRoutesCode(ssr = false) {
     return `
   import React from 'react';
-  import loadable from '@loadable/component';
+  ${ssr ? '' : 'import loadable from "@loadable/component";'}
   ${this.#routeData
     .map((route, index) => {
       //   return `import Route${index} from '${route.absolutePath}';`;
-      //按需加载
-      return `const Route${index} = loadable(() => import('${route.absolutePath}'));`;
+      //按需加载 在SSR/SSG中,没有网络IO的开销, 无需使用按需加载
+      return ssr
+        ? `import Route${index} from '${route.absolutePath}';`
+        : `const Route${index} = loadable(() => import('${route.absolutePath}'));`;
     })
     .join('\n')}
   export const routes = [

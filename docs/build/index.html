@@ -1,19 +1,39 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>title</title>
-    <meta name="description" content="xxx" />
-  </head>
-  <body>
-    <div id="root">
-      <div>
-        <h1>Common Content</h1>
-        <h1>Doc Content</h1>
-        <div>Hello, route A</div>
-      </div>
-    </div>
-    <script type="module" src="./ssr-entry.js"></script>
-  </body>
-</html>
+<!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>title</title>
+          <meta name="description" content="xxx">
+        </head>
+        <body>
+          <div id="root"><div><h1>Common Content</h1><h1>Doc Content</h1><h1 id="gfm"><a class="header-anchor" href="#gfm">#</a>GFM</h1>
+<h2 id="autolin"><a class="header-anchor" href="#autolin">#</a>Autolin</h2>
+<p>literals <a href="http://www.example.com">www.example.com</a>, <a href="https://example.com">https://example.com</a>, and <a href="mailto:contact@example.com">contact@example.com</a>.</p>
+<pre class="shiki nord" style="background-color:#2e3440ff" tabindex="0"><code><span class="line"><span style="color:#81A1C1">import</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">{</span><span style="color:#D8DEE9FF"> </span><span style="color:#D8DEE9">pluginIndexHtml</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">}</span><span style="color:#D8DEE9FF"> </span><span style="color:#81A1C1">from</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">&#x27;</span><span style="color:#A3BE8C">./plugin-island/indexHtml</span><span style="color:#ECEFF4">&#x27;</span><span style="color:#81A1C1">;</span></span>
+<span class="line"><span style="color:#81A1C1">import</span><span style="color:#D8DEE9FF"> </span><span style="color:#D8DEE9">pluginReact</span><span style="color:#D8DEE9FF"> </span><span style="color:#81A1C1">from</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">&#x27;</span><span style="color:#A3BE8C">@vitejs/plugin-react</span><span style="color:#ECEFF4">&#x27;</span><span style="color:#81A1C1">;</span></span>
+<span class="line"><span style="color:#81A1C1">import</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">{</span><span style="color:#D8DEE9FF"> </span><span style="color:#D8DEE9">pluginConfig</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">}</span><span style="color:#D8DEE9FF"> </span><span style="color:#81A1C1">from</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">&#x27;</span><span style="color:#A3BE8C">./plugin-island/config</span><span style="color:#ECEFF4">&#x27;</span><span style="color:#81A1C1">;</span></span>
+<span class="line"><span style="color:#81A1C1">import</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">{</span><span style="color:#D8DEE9FF"> </span><span style="color:#D8DEE9">pluginRoutes</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">}</span><span style="color:#D8DEE9FF"> </span><span style="color:#81A1C1">from</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">&#x27;</span><span style="color:#A3BE8C">./plugin-routes</span><span style="color:#ECEFF4">&#x27;</span><span style="color:#81A1C1">;</span></span>
+<span class="line"><span style="color:#81A1C1">import</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">{</span><span style="color:#D8DEE9FF"> </span><span style="color:#D8DEE9">SiteConfig</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">}</span><span style="color:#D8DEE9FF"> </span><span style="color:#81A1C1">from</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">&#x27;</span><span style="color:#A3BE8C">shared/types</span><span style="color:#ECEFF4">&#x27;</span><span style="color:#81A1C1">;</span></span>
+<span class="line"><span style="color:#81A1C1">import</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">{</span><span style="color:#D8DEE9FF"> </span><span style="color:#D8DEE9">createPluginMdx</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">}</span><span style="color:#D8DEE9FF"> </span><span style="color:#81A1C1">from</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">&#x27;</span><span style="color:#A3BE8C">./plugin-mdx</span><span style="color:#ECEFF4">&#x27;</span><span style="color:#81A1C1">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#81A1C1">export</span><span style="color:#D8DEE9FF"> </span><span style="color:#81A1C1">async</span><span style="color:#D8DEE9FF"> </span><span style="color:#81A1C1">function</span><span style="color:#D8DEE9FF"> </span><span style="color:#88C0D0">createVitePlugins</span><span style="color:#ECEFF4">(</span></span>
+<span class="line"><span style="color:#D8DEE9FF">  </span><span style="color:#D8DEE9">config</span><span style="color:#81A1C1">:</span><span style="color:#D8DEE9FF"> </span><span style="color:#8FBCBB">SiteConfig</span><span style="color:#ECEFF4">,</span></span>
+<span class="line"><span style="color:#D8DEE9FF">  </span><span style="color:#88C0D0">restartServer</span><span style="color:#81A1C1">?:</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">()</span><span style="color:#D8DEE9FF"> </span><span style="color:#81A1C1">=&gt;</span><span style="color:#D8DEE9FF"> </span><span style="color:#8FBCBB">Promise</span><span style="color:#ECEFF4">&lt;</span><span style="color:#8FBCBB">void</span><span style="color:#ECEFF4">&gt;</span></span>
+<span class="line"><span style="color:#ECEFF4">)</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">{</span></span>
+<span class="line"><span style="color:#D8DEE9FF">  </span><span style="color:#81A1C1">return</span><span style="color:#D8DEE9FF"> [</span></span>
+<span class="line"><span style="color:#D8DEE9FF">    </span><span style="color:#88C0D0">pluginIndexHtml</span><span style="color:#D8DEE9FF">()</span><span style="color:#ECEFF4">,</span></span>
+<span class="line"><span style="color:#D8DEE9FF">    </span><span style="color:#88C0D0">pluginReact</span><span style="color:#D8DEE9FF">(</span><span style="color:#ECEFF4">{</span></span>
+<span class="line"><span style="color:#D8DEE9FF">      </span><span style="color:#D8DEE9">jsxRuntime</span><span style="color:#ECEFF4">:</span><span style="color:#D8DEE9FF"> </span><span style="color:#ECEFF4">&#x27;</span><span style="color:#A3BE8C">automatic</span><span style="color:#ECEFF4">&#x27;</span></span>
+<span class="line"><span style="color:#D8DEE9FF">    </span><span style="color:#ECEFF4">}</span><span style="color:#D8DEE9FF">)</span><span style="color:#ECEFF4">,</span></span>
+<span class="line"><span style="color:#D8DEE9FF">    </span><span style="color:#88C0D0">pluginConfig</span><span style="color:#D8DEE9FF">(</span><span style="color:#D8DEE9">config</span><span style="color:#ECEFF4">,</span><span style="color:#D8DEE9FF"> </span><span style="color:#D8DEE9">restartServer</span><span style="color:#D8DEE9FF">)</span><span style="color:#ECEFF4">,</span></span>
+<span class="line"><span style="color:#D8DEE9FF">    </span><span style="color:#88C0D0">pluginRoutes</span><span style="color:#D8DEE9FF">(</span><span style="color:#ECEFF4">{</span></span>
+<span class="line"><span style="color:#D8DEE9FF">      </span><span style="color:#D8DEE9">root</span><span style="color:#ECEFF4">:</span><span style="color:#D8DEE9FF"> </span><span style="color:#D8DEE9">config</span><span style="color:#ECEFF4">.</span><span style="color:#D8DEE9">root</span></span>
+<span class="line"><span style="color:#D8DEE9FF">    </span><span style="color:#ECEFF4">}</span><span style="color:#D8DEE9FF">)</span><span style="color:#ECEFF4">,</span></span>
+<span class="line"><span style="color:#D8DEE9FF">    </span><span style="color:#81A1C1">await</span><span style="color:#D8DEE9FF"> </span><span style="color:#88C0D0">createPluginMdx</span><span style="color:#D8DEE9FF">()</span></span>
+<span class="line"><span style="color:#D8DEE9FF">  ]</span><span style="color:#81A1C1">;</span></span>
+<span class="line"><span style="color:#ECEFF4">}</span></span>
+<span class="line"></span></code></pre></div></div>
+          <script type="module" src="./assets/client-entry-8Yy_mUmH.js"></script>
+        </body>
+      </html>

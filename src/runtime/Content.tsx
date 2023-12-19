@@ -18,8 +18,6 @@ import { routes } from 'island:routes';
 // ];
 
 function Content() {
-  console.log(routes);
-
   const routeElement = useRoutes(routes);
   return routeElement;
 }

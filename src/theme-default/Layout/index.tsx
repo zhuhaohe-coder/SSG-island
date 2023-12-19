@@ -1,5 +1,8 @@
 import { usePageData } from '@runtime';
+import { Nav } from '../components/Nav';
 import 'uno.css';
+import '../styles/base.css';
+import '../styles/vars.css';
 export function Layout() {
   const pageData = usePageData();
   // 获取 pageType
@@ -12,5 +15,9 @@ export function Layout() {
 
     return <div>404 页面</div>;
   };
-  return <div>{getContent()}</div>;
+  return (
+    <div>
+      <Nav />
+    </div>
+  );
 }

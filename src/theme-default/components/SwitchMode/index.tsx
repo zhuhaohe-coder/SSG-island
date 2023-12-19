@@ -1,7 +1,7 @@
 import { toggle } from '../../logic/toggleMode';
 import styles from './index.module.scss';
 interface SwitchProps {
-  onClick?: () => void;
+  onClick?: any;
   children: React.ReactNode;
   className?: string;
   id?: string;
@@ -25,7 +25,7 @@ export function Switch(props: SwitchProps) {
 
 export function SwitchMode() {
   return (
-    <Switch onClick={toggle}>
+    <Switch onClick={(e: MouseEvent) => toggle(e)}>
       <div className={styles.sun}>
         <div className="i-carbon-sun" w="full" h="full"></div>
       </div>
